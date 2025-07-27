@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my world</title>
+    <style>
+    body {
+        background-color: #fff0f5;
+            font-family: 'Comic Sans Ms', cursive;
+            padding: 30px;
+            text-align: center;
+            }
+        .jar-container {
+            position: relative;
+            display: inline-block;
+        }
+            .strawberry {
+        position: absolute;
+        top: 30px;
+        left: 60%;
+        transform: translateX(-50%) rotate(-10deg);
+        width: 90px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+    .strawberry:active {
+        transform: translateX(-50%) rotate(-20deg) scale(1.2);
+    }
+    h1 {
+        color: #ff69b4;
+    }
+    button {
+        background-color: #ffb6c1;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    .jar {
+        width: 200px;
+        margin-top: 20px;
+        transition: transform 0.4s ease-in-out;
+    }
+    .jar.opened {
+        transform: scale(1.1) rotate(-3deg);
+    }
+    #quoteArea {
+        font-size: 18px;
+        color: #444;
+        margin-top: 30px;
+    }
+    #counter {
+        font-size: 14px;
+        color: #888;
+        margin-top: 10px;
+    }
+    </style>
+</head>
+<body>
+    <h1>🌼 My jar of postivity 🌼</h1>
+    <audio id="jarSound" src="02. 707 Goshitsu.mp3" preload="auto"></audio>
+    <audio id="bgMusic" loop src="classic piano.mp3"></audio>
+    <div class="jar-container">
+        <img src="jar.png" alt="jar" id="jarImage" class="jar" />
+        <img src="strawberryremovebg.png" alt="strawberry" id="strawberryImage" class="strawberry" onclick="openJar()" />
+    </div>
+    <button onclick="toggleMusic()">Toggle Music</button>
+    <p id="quoteArea">Click here to get a quote!</p>
+    <p id="counter">Quotes opened: 0</p>
+
+<script>
+    const quotes = [
+        "Zendagi migzara (life goes on), don't worry.",
+        "I wish you a kinder sea.",
+        "Anyone who keeps the ability to see beauty never grows old.",
+        "I do not wish to avoid the walk the distance is nothing when one has a motive.",
+        "The only flaw is, You are flawless!", 
+        "No matter how much or how often people hurt eachother loving someone is never a waste.",
+    ]; 
+    let quoteCount = 0;
+    function showQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        document.getElementById("quoteArea").innerText = quotes[randomIndex];
+        quoteCount++;
+        document.getElementById("counter").innerText = "Quotes opened: " + quoteCount; 
+    }
+    function openJar() {
+        document.getElementById("jarSound").play();
+        const jar = document.getElementById("jarImage");
+        jar.classList.add("opened");
+        showQuote();
+        setTimeout(() => {
+            jar.classList.remove("opened");
+        }, 500);
+    }
+    function toggleMusic() {
+        const music = document.getElementById("bgMusic");
+        if (music.paused) {
+            music.play();
+        } else {
+            music.pause();
+        }
+    }
+</script>
+<!-- Your content goes here -->
+</body>
+</html>
